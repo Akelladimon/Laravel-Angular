@@ -1,0 +1,126 @@
+<div class="container mx-auto px-4 h-full mt-20">
+    <div class="flex content-center items-center justify-center h-full mt-20"  *ngIf="needCompany">
+      <div class="w-full lg:w-4/12 px-4">
+        <div
+          class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0"
+        >
+          <div class="rounded-t mb-0 px-6 py-6">
+            <div class="text-center mb-3">
+              <h6 class="text-blueGray-500 text-sm font-bold">Create new company</h6>
+            </div>
+            <hr class="mt-6 border-b-1 border-blueGray-300" />
+          </div>
+          <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <form
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmitCompany()"
+              #f="ngForm"
+              novalidate >
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-name"
+                >
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  [(ngModel)]="form.name"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Company Name"
+                />
+              </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-name"
+                >
+                  Company Address
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  [(ngModel)]="form.address"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Company Address"
+                />
+              </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-city"
+                >
+                  Company City
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  [(ngModel)]="form.city"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Company City"
+                />
+              </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-city"
+                >
+                  Company State
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  [(ngModel)]="form.state"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Company State"
+                />
+              </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-zip"
+                >
+                  Company Post Code
+                </label>
+                <input
+                  type="text"
+                  name="zip"
+                  [(ngModel)]="form.zip"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Company Post Code"
+                />
+              </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-zip"
+                >
+                  Company Phone
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  [(ngModel)]="form.phone"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Company Phone"
+                />
+              </div>
+              <div class="text-center mt-6">
+                <button
+                  class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                >
+                  Create Company
+                </button>
+              </div>
+              <div class="form-group">
+                <div *ngIf="f.submitted" class="alert alert-danger" role="alert">
+                  Create Company failed: {{ errorMessage }}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

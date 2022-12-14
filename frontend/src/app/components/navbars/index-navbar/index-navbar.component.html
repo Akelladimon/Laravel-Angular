@@ -1,0 +1,76 @@
+<nav
+  class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow"
+>
+  <div
+    class="container px-4 mx-auto flex flex-wrap items-center justify-between"
+  >
+    <div
+      class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
+    >
+      <a href="/home"
+         class="text-blueGray-700 text-sm font-bold hover:text-blueGray-500
+           leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+         routerLink="home">
+        Home
+      </a>
+      <a *ngIf="showAdminBoard"
+         href="/admin"
+         class="text-blueGray-700 text-sm font-bold hover:text-blueGray-500
+           leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+         routerLink="home">
+        Admin Board
+      </a>
+      <a *ngIf="isLoggedIn"
+         href="/user"
+         class="text-blueGray-700 text-sm font-bold hover:text-blueGray-500
+           leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+         routerLink="home">
+        User
+      </a>
+      <a *ngIf="!isLoggedIn"
+         href="/register"
+         class="text-blueGray-700 text-sm font-bold hover:text-blueGray-500
+           leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+         routerLink="register">
+        Sign Up
+      </a>
+      <a *ngIf="!isLoggedIn"
+         href="/login"
+         class="text-blueGray-700 text-sm font-bold hover:text-blueGray-500
+           leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+         routerLink="login">
+        Login
+      </a>
+    </div>
+    <div
+      class="lg:flex flex-grow items-center"
+      [ngClass]="{ hidden: !navbarOpen, block: navbarOpen }"
+      id="example-navbar-warning"
+    >
+      <ul class="flex flex-col lg:flex-row list-none lg:ml-auto"
+          *ngIf="isLoggedIn">
+        <li class="flex items-center">
+          <!--          <app-index-dropdown class="block"></app-index-dropdown>-->
+        </li>
+        <li class="flex items-center">
+          <a
+            href="/profile"
+            class="text-blueGray-700 text-sm font-bold hover:text-blueGray-500
+            leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+            routerLink="profile">
+            profile
+          </a>
+          <a href="/profile" class="nav-link" routerLink="profile"></a>
+        </li>
+        <li class="flex items-center">
+          <button
+            (click)="logout()"
+            class="bg-red-600 text-white active:bg-red-700 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+            type="button"
+          >LogOut
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

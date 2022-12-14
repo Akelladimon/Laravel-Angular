@@ -1,0 +1,75 @@
+version: '3'
+services:
+
+    # PHP Service
+    backend:
+        build:
+            context: .
+            dockerfile: ./docker/backend/DockerFile
+        container_name: "laravelA_backend"
+        tty: true
+        environment:
+            SERVICE_NAME: backend
+        working_dir: /var/www/backend
+        volumes:
+            - ./backend/:/var/www/backend
+            - ./docker/backend/supervisor/supervisord.conf:/etc/supervisord.conf
+            - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - app-private
+
+    # Frontend Service
+    frontend:
+        build:
+            context: .
+            dockerfile: ./docker/frontend/DockerFile
+        container_name: "angular"
+        working_dir: /usr/src/app/frontend
+        volumes: 
+            - ./frontend/:/usr/src/app/frontend 
+        ports: 
+            - '4200:4200' 
+        command: > 
+            bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+        networks:
+            - app-private
+
+    # Nginx Service
+    webserver:
+        image: nginx:alpine
+        container_name: "laravelA_webserver"
+        tty: true
+        ports:
+            - "8000:80"
+            - "443:443"
+        volumes:
+            - ./backend/:/var/www/backend
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - app-private
+
+    # MySQL Service
+    mysql:
+        image: mysql:8.0
+        container_name: db_la
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: laravelA
+        volumes:
+            - ./docker/mysql/dbdata/:/var/lib/mysql-files/
+            - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - app-private
+
+# Docker Networks
+networks:
+    app-private:
+        driver: bridge
+
+volumes:
+    mysql:
+        driver: local
